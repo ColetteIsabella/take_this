@@ -7,6 +7,25 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <nav>
+  <% if user_signed_in? %>
+    Signed in as <%= current_user.email %>
+    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+    <% admins_only do %>
+      <%= link_to "Admin", admin_root_path %>
+    <% end %>
+
+  <% else%>
+  <%= link_to "Sign up", new_user_registration_path %>
+  <%= link_to "Sign in", new_user_session_path %>
+<% end %>
+</nav>
+
+<% flash.each do |key, value|%>
+<div class='flash' id= '<%= key %>'>
+  <%= value %>
+</div>
+<% end %>
 
 <%= yield %>
 

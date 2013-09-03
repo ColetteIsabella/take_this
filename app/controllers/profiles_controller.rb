@@ -1,10 +1,12 @@
 class ProfilesController < ApplicationController
+  before_filter :authorize_admin!, except: [:index, :show]
+  before_filter :authenticate_user!, only: [:index, :show]
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
 
   # GET /profiles
   # GET /profiles.json
   def index
-    @profiles = Profile.all
+    @profiles = Profile.for(current_user).all
   end
 
   # GET /profiles/1
@@ -64,11 +66,19 @@ class ProfilesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_profile
-      @profile = Profile.find(params[:id])
+      @profile = Profile.for(current_user).find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
       params.require(:profile).permit(:name, :email, :biography, :age)
     end
+
+    def authorize_admin!
+    authenticate_user!
+    unless current_user.admin?
+      flash[:alert] = "You must be an admin to do that."
+      redirect_to root_path
+    end
+  end
 end

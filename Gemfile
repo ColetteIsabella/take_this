@@ -6,6 +6,13 @@ gem "dynamic_form"
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
+gem "devise"
+gem "cancan"
+
+group :test do
+  gem "email_spec"
+end
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
