@@ -162,7 +162,7 @@ PLATFORMS
 DEPENDENCIES
   cancan
   coffee-rails (~> 4.0.0)
-  devise
+  devise (~> 3.0.0rc)
   dynamic_form
   email_spec
   jbuilder (~> 1.2)

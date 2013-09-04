@@ -6,7 +6,7 @@ gem "dynamic_form"
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
-gem "devise"
+gem "devise", "~>3.0.0rc"
 gem "cancan"
 
 group :test do
