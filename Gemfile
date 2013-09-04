@@ -8,6 +8,7 @@ gem 'sqlite3'
 
 gem "devise", "~>3.0.0rc"
 gem "cancan"
+gem "foundation"
 
 group :test do
   gem "email_spec"

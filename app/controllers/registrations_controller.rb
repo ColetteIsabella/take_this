@@ -3,4 +3,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
   private :resource_params
+
+  def after_inactive_sign_up_path_for(resource)
+    confirm_user_path
+  end
 end
